@@ -1,0 +1,66 @@
+{
+        "extends": "airbnb",
+        "parser": "babel-eslint",
+        "env": {
+                "browser": true,
+                "node": true,
+                "es6": true,
+                "mocha": true
+        },
+        "plugins": ["react-hooks"],
+        "rules": {
+                // Indentation
+                "indent": [1, "tab", {"SwitchCase": 1}],
+                "react/jsx-indent": [1, "tab"],
+                "react/jsx-indent-props": [1, "tab"],
+                // Checks rules of Hooks
+                "react-hooks/rules-of-hooks": "error",
+                // Check hooks dependencies
+                "react-hooks/exhaustive-deps": "warn",
+                "no-tabs": 0,
+                // Align keys/values in objects
+                "key-spacing": [2, { "mode": "minimum", "afterColon": true }],
+                // Spaces before function parameters
+                "space-before-function-paren": 0,
+                // Blank line after function declaration
+                "padded-blocks": 0,
+                // Allow missing trailling comma
+                "comma-dangle": 0,
+                // Only warn for long line length
+                //"max-len": 1,
+                // Allow compact object declaration
+                "object-curly-spacing": 0,
+                // Strings should be double quoted
+                "quotes": [ 2, "double", { "avoidEscape": true } ],
+                // Make it meaningful
+                "prefer-const": 1,
+                // Allow spaces in parenthesis
+                "arrow-parens": [1, "as-needed"],
+                // Spaces in parenthesis
+                "space-in-parens": 0,
+                // Allow bitwise operators
+                "no-bitwise": 0,
+                // Allow non nested label inputs
+                "jsx-a11y/label-has-for": [ 2, { "components": [ "Label" ], "required": { "every": [ "id" ] }, "allowChildren": false }],
+                // Allow __data__ for D3 objects
+                "no-underscore-dangle": [2, { "allow": ["__data__"] }],
+                // Allow destructuring assignment
+                "object-curly-newline": [2, { "ObjectPattern": { "multiline": true } }],
+                // Allow JSX in both .js and .jsx files
+                "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+                // Enforce JSDoc
+                "valid-jsdoc": [2, {
+                	"requireReturn": true,
+                	"requireReturnType": true,
+                	"requireParamDescription": true,
+                	"requireReturnDescription": true
+                }],
+                "require-jsdoc": [2, {
+                		"require": {
+                		"FunctionDeclaration": true,
+                		"MethodDefinition": true,
+                		"ClassDeclaration": true
+                        }
+                }]
+        }
+}
