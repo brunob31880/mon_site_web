@@ -7,7 +7,7 @@ import Header from "./Header";
 /**
  * Stateless component for Bruno's book main homepage.
  *
- * @name PageMath
+ * @name Page
  * @author Bruno Boissie <boissiebruno@gmail.com>
  * @copyright (c) 2019, DSNA/DTI. All rights reserved.
  *
@@ -18,7 +18,7 @@ import Header from "./Header";
 const withHeader = props => WrappedComponent => {	
 	return (
 			<div className="layer">
-				<Header />
+				<Header {...props}/>
 				<div className="layer3">
 					<WrappedComponent {...props} />
 				</div>
