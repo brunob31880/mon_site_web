@@ -29,17 +29,12 @@ const App = () => {
 					<AuthRoute type="private" exact path="/mathematiques">
 						<PageMath />
 					</AuthRoute>
-
 					<AuthRoute type="private" exact path="/informatique">
 						<PageInfo />
 					</AuthRoute>
-
-					<Route exact path="/home" component={PageHome} />
-
-					<AuthRoute type="guest" exact path="/login">
+					<AuthRoute type="guest" exact path="/">
 						<PageLogin />
 					</AuthRoute>
-
 					<Route component={PageNotFound} />
 				</Switch>
 			</div>
