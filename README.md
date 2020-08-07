@@ -1,1 +1,5 @@
-# Site web ecris en react
+#Introduction
+
+Ce projet corresponds à la réalisation de mon site web en react
+
+#Architecture
