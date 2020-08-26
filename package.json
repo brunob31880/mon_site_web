@@ -1,5 +1,5 @@
 {
-  "name": "site-react-front",
+  "name": "site-web-bruno",
   "version": "0.0.1",
   "description": "DSNA/DTI playground for React components",
   "repository": {
@@ -28,7 +28,7 @@
     "dev": "DEBUG=CDM webpack-dev-server --config ./.config/webpack.js --display-error-details",
     "build": "webpack --mode production --config ./.config/webpack.js --display-error-details"
   },
-  "author": "DSNA/DTI, Luc Thibault",
+  "author": "Boissie Bruno",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
