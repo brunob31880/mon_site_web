@@ -8,8 +8,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React,{useMemo} from "react";
 import {useApp} from "../../context/AppContext";
-import {getDayInfoWithDateString} from "../../datas/delay";
-import {getRegulWithDateString} from "../../datas/reguls";
 /**
  * Stateless component for ACDS Global Notification.
  *
@@ -22,24 +20,8 @@ import {getRegulWithDateString} from "../../datas/reguls";
  */
 const GlobalNotification = props => {
 
-	const [{salle, reguls,date},] = useApp();
+	const [{date},] = useApp();
 
-	const delayday = getDayInfoWithDateString("mer. 05 août")[0];
-	useMemo(() => {
-		console.log("Delay="+JSON.stringify(delayday));
-	}, [delayday]);
-	
-	const {value}=delayday;
-
-	const {delayAv,delayTot,deviation} = value;
-	const getNbRegul=()=>{
-		const regulday = getRegulWithDateString("mer. 05 août")[0];
-		return regulday.value.length;
-	}
-	useMemo(() => {
-		console.log(`[GlobalNotification] Regul=${reguls}`);
-		console.log(`[GlobalNotification] Salle=${salle}`);
-	}, [reguls,salle]);
 
 	const ye = new Intl.DateTimeFormat('fr', { year: 'numeric' }).format(date);
 	const mo = new Intl.DateTimeFormat('fr', { month: 'short' }).format(date);

@@ -10,11 +10,7 @@ import socketIOClient from "socket.io-client";
 import {useApp} from "../../context/AppContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import {salles} from "../../datas/salles";
-import {reguls} from "../../datas/reguls";
-import alertes from "../../datas/alertes";
 import {config} from "../../datas/config";
-import {dayinfos} from "../../datas/delay";
 /**
  * Stateless component for Login Page
  *
@@ -65,36 +61,7 @@ const Login = () => {
 			window.alert(JSON.parse(token).errors);
 			return;
 		}
-		const {bordeaux} = salles;
-		const {fake} = reguls;
-		const {fakebis} = alertes;
-
-		dispatch({
-			type: "changeSalle",
-			payload: {
-				salle: bordeaux
-			}
-		});
 	
-		dispatch({
-			type: "setAlert",
-			payload: {
-				alertes: fakebis
-			}
-		});
-		dispatch({
-			type: "setRegul",
-			payload: {
-				reguls: reguls
-			}
-		});
-
-		dispatch({
-			type: "setInfoDate",
-			payload: {
-				infodate: dayinfos
-			}
-		});
 		dispatch({
 			type: "setSocket",
 			payload: {

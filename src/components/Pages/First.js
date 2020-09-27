@@ -6,7 +6,7 @@
 import React, { useMemo } from "react";
 import { Button } from "react-bootstrap";
 import { Redirect } from "react-router";
-import LOGO from "../../images/circle-cropped_1.png";
+import LOGO from "../../images/image.jpg";
 import { useApp } from "../../context/AppContext";
 import {config} from "../../datas/config";
 
@@ -47,7 +47,7 @@ const First = props => {
 			: (
 				<>
 					<div className="logo">
-						<img src={LOGO} />
+						<img className="roundedImageBorder" src={LOGO} />
 					</div>
 					<div className="version">
 					{version}

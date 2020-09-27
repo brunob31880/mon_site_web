@@ -2,7 +2,6 @@
 import React from "react";
 import { Redirect } from "react-router";
 import {useApp} from "../../context/AppContext";
-import Alerte from "../Alertes/Alerte.js"
 
 
 /**
@@ -35,10 +34,7 @@ const Alertes = () => {
 				
 					<div className="listealertes" >
 					
-					{ alertes.alerte.map(data => (
-						<Alerte key={data.id}  name ={data.name}  MV= {data.MV} backgroundColor ={data.couleurdesalertes} />
-						
-							))}
+					
 					</div>
                     
 				</>

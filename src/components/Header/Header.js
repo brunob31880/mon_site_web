@@ -13,12 +13,12 @@
 
 import React from "react";
 import * as d3 from "d3";
-import CONTROL from "../../images/CONTROL.png";
-import CONTROL2 from "../../images/CONTROL2.png";
-import HISTO2 from "../../images/HISTO2.png";
-import MAP2 from "../../images/MAP2.png";
+import CONTROL from "../../images/people.png";
+import CONTROL2 from "../../images/people.png";
+import HISTO2 from "../../images/math.png";
+import MAP2 from "../../images/phys.png";
 import BACK from "../../images/BACK.png";
-import VR2 from "../../images/VR2.png";
+import VR2 from "../../images/info.png";
 import photo1 from "../../images/Sonic.png";
 import photo2 from "../../images/Sonic2.jpg";
 import { useApp } from "../../context/AppContext";

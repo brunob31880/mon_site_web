@@ -3,8 +3,7 @@
 import React, { useMemo,useEffect, useRef, useState } from "react";
 import { Redirect } from "react-router";
 import { useApp } from "../../context/AppContext";
-import D3MapComponent from "../Radar/D3MapComponent";
-import Menu from "../../components/Menu/Menu";
+
 
 
 
@@ -25,50 +24,19 @@ const Radar = (props) => {
     const isRadar = () => page.includes("radar");
     const [locate, setLocate] = useState("");
     const navToPages = () => (user.email !== undefined && !isRadar());
-    const [Gesture, setGesture] = useState("Rien");
-    const [Radar, setRadar] = useState("Server Info Radar");
-    const refElement = useRef(null);
+
+
     const menu = [];
-    //https://github.com/lessmess-dev/react-media-hook
-    useEffect(() => {
-        //on associe le composant D3
-        map = new D3MapComponent(refElement.current, { geometry, position, menu, displaytype, setGesture });
+   
 
-    }, []);
-
-    useEffect(() => {
-        fetch("https://ipapi.co/json/").then(response => response.json())
-            .then(data =>
-                setLocate(data)
-            )
-    }, []);
-
-    const launchsimu = () => {
-        console.log("Lauching Demo Radar on "+locate);
-        socket.emit("launchdemo", locate);
-    };
-
-    useMemo(() => {
-		socket && socket.on("moveFlight", data => {
-            console.log("Moving flight "+JSON.stringify(data));
-            setRadar(JSON.stringify(data));
-		});
-    }, [socket]);
-    
+   
     return (
         navToPages()
             ? <Redirect to={page} />
             : (
                 <>
-                    <div ref={refElement} id="map" className="map" />
-                    {/*  <Menu/> */}
-                    <button onClick={launchsimu}>DEMO</button>
-                    <div className="gestureres">
-                        {Gesture}
-                    </div>
-                    <div className="inforadar">
-                        {Radar}
-                    </div>
+                    <div id="map" className="map" />
+                   
                 </>
             )
 

@@ -5,7 +5,7 @@
 		meta: valeur connu au niveau du contexte global 
 */
 export const config = {
-	version:"0.0.2",
+	version:"0.0.1",
 	 //SERVER_ADRESS : "http://127.0.0.1:3030",
 	// pour ceux qui n'ont pas de serveur installé ou fonctionnel 
 	// Essai second commit sur seconde machine BRANCHE_GEGE
@@ -13,8 +13,7 @@ export const config = {
 	//SERVER_ADRESS: "https://boissiebruno-pageperso-pi.ovh:3030",
 	// Serveur dockeurisé maison
 	SERVER_ADRESS: "https://boissiebruno-pageperso-pi.ovh:3060",
-	//JSON_FILE:"https://github.com/d3/d3.github.com/blob/master/world-50m.v1.json",
-	//JSON_FILE:"data_countries-50m.json",
+	
 	JSON_FILE: "world-countries.json",
 	loginHeader: {
 		backgroundColor: "rgb(25, 45, 179)",
@@ -81,7 +80,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Plan Salle"
+			text: "Physique"
 		},
 		rightComponent: {
 			icon: "map2"
@@ -129,7 +128,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Personnes et Equipe"
+			text: "Personnes"
 		},
 		rightComponent: {
 			icon: "control2"
@@ -146,7 +145,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Fiche Agent"
+			text: "Fiche Personne"
 		},
 		rightComponent: {
 			icon: "control2"
@@ -180,7 +179,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Regulations"
+			text: "Aviation Civile"
 		},
 		rightComponent: {
 			text: ""
@@ -217,7 +216,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Réalité Augmentée"
+			text: "Informatique"
 		},
 		rightComponent: {
 			icon: "vr2"
@@ -234,7 +233,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Historique"
+			text: "Mathematiques"
 		},
 		rightComponent: {
 			icon: "histo2"
@@ -265,7 +264,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Alertes"
+			text: "Maison"
 		},
 		rightComponent: {
 			icon: "bell"
@@ -282,7 +281,7 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Radar"
+			text: "Astronomie"
 		},
 		rightComponent: {
 			icon: "radar"

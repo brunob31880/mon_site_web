@@ -2,8 +2,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { Redirect } from "react-router";
-import Agent from "../Management/Agent";
-import Equipe from "../Management/Equipe";
 import {useApp} from "../../context/AppContext";
 /**
  * Stateless component for React Playground management.
@@ -25,8 +23,7 @@ const Management = props => {
 			:		(
 				<>
 					<div className="listemanagement">
-						<Agent {...props} />
-						<Equipe {...props} />
+				
 					</div>
 				</>
 			)

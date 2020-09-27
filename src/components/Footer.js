@@ -12,18 +12,14 @@ import React, { useEffect, useMemo } from "react";
 /* import Svg from "../images/back.svg"; */
 /* import Image from 'react-bootstrap/Image' */
 import Tooltip from '@material-ui/core/Tooltip';
-import AR from "../images/AR.png";
-import MAP from "../images/MAP.png";
+import AR from "../images/info.png";
+import MAP from "../images/phys.png";
 import HISTO from "../images/math.png";
-import PLANES from "../images/PLANES.png";
-import {ReactComponent as Radar} from "../images/RADAR.svg";
-//import BELL from "../images/BELL.png";
-//import BELL from "../images/bell-rouge.png";
+import PLANES from "../images/plane.png";
+import RADAR from "../images/astro.png";
 import { useApp } from "../context/AppContext";
 //https://material-ui.com/fr/components/tooltips/
-import BELL from "../images/BELL.png";
-import bellpoints from "../images/bellpoints";
-import alertes from "../datas/alertes";
+import BELL from "../images/camera.png";
 
 /**
  * Stateless component for Acds Footer.
@@ -79,13 +75,6 @@ const Footer = props => {
 		console.log(`[Footer] FooterType=${footerType}`);
 		console.log(`[Footer] returnNav=${returnNav}`);
 	}, [page]);
-
-
-	const bell  = <svg width ={iconSize} height ={iconSize} cursor= "pointer"  onClick={() => navTo(fullrightFooterComponent.nav)} > <path id="path6003"
-    fill={alertes.alertemax.couleur} stroke={alertes.alertemax.couleur} stroke-width="1"
-    d= {bellpoints} />;
-    </svg>
-	
 	
 
 	return (
@@ -121,13 +110,12 @@ const Footer = props => {
 						</div>
 						<div className="footerfullrightdiv">
 							<Tooltip title="Alertes">
-								{ /*fullrightFooterComponent.icon === "bell" && <img src={BELL} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(fullrightFooterComponent.nav)} /> */}
-								{fullrightFooterComponent.icon === "bell" && bell}
+							{ fullrightFooterComponent.icon === "bell" && <img src={BELL} style={{ cursor: "pointer" }} width="35px" height="35px" onClick={() => navTo(fullrightFooterComponent.nav)} />}							
 							</Tooltip>
 						</div>
 						<div className="footerfullrightdiv2">
 						<Tooltip title="Radar">
-						{full2rightFooterComponent.icon === "radar" && <Radar fill="white" style={{ cursor: "pointer" }} width="35px" height="35px" onClick={() => navTo(full2rightFooterComponent.nav)} />}
+						{full2rightFooterComponent.icon === "radar" && <img src={RADAR} style={{ cursor: "pointer" }} width="35px" height="35px"  onClick={() => navTo(full2rightFooterComponent.nav)} />}
 						</Tooltip>
 						</div>
 					</div>

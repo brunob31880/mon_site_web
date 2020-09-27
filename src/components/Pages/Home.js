@@ -3,7 +3,6 @@
 import React, { useMemo } from "react";
 import { Redirect } from "react-router";
 import { useApp } from "../../context/AppContext";
-import { occupancy } from "../../datas/occupancy";
 import Notification from "../Notifications/Notification.js";
 import GlobalNotification from "../Notifications/GlobalNotification";
 /**
@@ -33,20 +32,7 @@ const Home = () => {
 		console.log(`[Home] NavToPage ? :${navToPages()} page=${page}`);
 	}, [page]);
 
-	// A refaire eventuellement en ecriture fonctionnelle, a eventuellement transferer dans une lib utilitaire
-	function notif() {
-		let notif = [];
-		for (let i = 0; i < salle.ilots.length; i++) {
-			let ilot = salle.ilots[i];
-			//	console.log("Ilot="+JSON.stringify(ilot));
-			for (let j = 0; j < ilot.positions.length; j++) {
-				let position = ilot.positions[j];
-				//console.log("[Home] Position="+JSON.stringify(position));
-				if ((position.occupancyvalues[0].value > 1 / 3) &&  (position.notification===undefined || position.notification==="shown")) notif.push({ id: position.id, name: position.name, level: position.occupancyvalues[0].value });
-			}
-		}
-		return notif;
-	};
+	
 	return (
 		navToPages()
 			? <Redirect to={page} />
@@ -54,11 +40,6 @@ const Home = () => {
 				<>
 					<div className="listenotification">
 						<GlobalNotification />
-						{notif().map(notif =>
-							<Notification key={notif.id} name={notif.id} level={notif.level} />
-						)}
-
-
 					</div>
 				</>
 			)

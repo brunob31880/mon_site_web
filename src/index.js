@@ -11,8 +11,6 @@ import withHeaderFooter from "./components/Page";
 import Login from "./components/Pages/Login";
 import Creation from "./components/Pages/Creation";
 import Salle from "./components/Pages/Salle";
-import Ilot from "./components/Pages/Ilot";
-import CwpOccup from "./components/Pages/CwpOccup";
 import First from "./components/Pages/First";
 import Home from "./components/Pages/Home";
 import Histo from "./components/Pages/History";
@@ -21,8 +19,6 @@ import Regulations from "./components/Pages/Regulations";
 import Management from "./components/Pages/Management";
 import Notification2 from "./components/Notifications/Notification2";
 import PageNotFound from "./components/PageNotFound";
-import Agent from "./components/Management/Agent";
-import Equipe from "./components/Management/Equipe";
 import AuthRoute from "./routes/AuthRoutes";
 import Alertes from "./components/Pages/Alertes";
 import Radar from "./components/Pages/Radar";
@@ -43,11 +39,7 @@ const App = () => {
 	const PageCreation = () => withHeaderFooter(loginHeader)(Creation);
 	const PageHome = () => withHeaderFooter(loggedHeader)(Home);
 	const PageSalle = () => withHeaderFooter(loggedHeaderSalle)(Salle);
-	const PageIlot = () => withHeaderFooter(loggedHeaderIlot)(Ilot);
-	const PageCWPOccup = () => withHeaderFooter(loggedHeaderCwp)(CwpOccup);
 	const PageManagement = () => withHeaderFooter(loggedHeaderManagement)(Management);
-	const PageAgent = () => withHeaderFooter(loggedHeaderAgent)(Agent);
-	const PageEquipe = () => withHeaderFooter(loggedHeaderEquipe)(Equipe);
 	const PageRegulations = () => withHeaderFooter(loggedHeaderRegulations)(Regulations);
 	const PageVR = () => withHeaderFooter(loggedHeaderVirtual)(Virtual);
 	const PageHistory = () => withHeaderFooter(loggedHeaderHistory)(Histo);
@@ -75,15 +67,9 @@ const App = () => {
 			resetKeys={[explode]}
 		>
 			<BrowserRouter>
-				<Switch>
-					<AuthRoute type="private" exact path="/cwp/:id">
-						<PageCWPOccup />
-					</AuthRoute>
+				<Switch>	
 					<AuthRoute type="private" exact path="/notification/:id">
 						<PageNotification />
-					</AuthRoute>
-					<AuthRoute type="private" exact path="/ilot/:id">
-						<PageIlot />
 					</AuthRoute>
 					<AuthRoute type="private" exact path="/history">
 						<PageHistory />
@@ -96,12 +82,6 @@ const App = () => {
 					</AuthRoute>
 					<AuthRoute type="private" exact path="/management">
 						<PageManagement />
-					</AuthRoute>
-					<AuthRoute type="private" exact path="/agent">
-						<PageAgent />
-					</AuthRoute>
-					<AuthRoute type="private" exact path="/equipe">
-						<PageEquipe />
 					</AuthRoute>
 					<AuthRoute type="private" exact path="/regulations">
 						<PageRegulations />

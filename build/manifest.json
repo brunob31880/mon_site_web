@@ -1,19 +1,19 @@
 {
-  "name": "ACDS",
-  "short_name": "ACDS",
+  "name": "Bruno's Book",
+  "short_name": "Bruno's Book",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#2A3443",
-  "description": "Assistant chef de salle",
+  "description": "Un book pas face",
   "theme_color": "#2A3443",
   "icons": [
     {
-      "src": "./ACDS.png",
-      "sizes": "225x230",
+      "src": "./image.png",
+      "sizes": "392x392",
       "type": "image/png"
     },
     {
-      "src": "./ACDS-144.png",
+      "src": "./image-144.png",
       "sizes": "144x144",
       "type": "image/png"
     }

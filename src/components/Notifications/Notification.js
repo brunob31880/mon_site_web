@@ -10,7 +10,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Redirect } from "react-router";
 import { useApp } from "../../context/AppContext";
 import * as d3 from "d3";
-import {setNotificationOfPosition} from "../../datas/salles";
 /**
  * Stateless component for ACDS Notification.
  *
@@ -29,7 +28,7 @@ const Notification = props => {
 	const [del, setDelete] = useState(false);
 	
 
-	const [{ page, user,salle }, dispatch] = useApp();
+	const [{ page, user}, dispatch] = useApp();
 
 	const navTo = page => {
 		dispatch({
@@ -45,10 +44,7 @@ const Notification = props => {
 		if (show) navTo(`/notification/:${name}`);
 	}, [show]);
 
-	useMemo(() => {
-		console.log(`[Notification] delete=${del} ${name}`);
-		if (del) setNotificationOfPosition(name,salle);
-	}, [del]);
+
 	useMemo(() => {
 		console.log(`[Notification] Click=${clicked}`);
 	}, [clicked]);
@@ -90,7 +86,7 @@ const Notification = props => {
 						? (
 							<div className="notificationmain" id="notificationmain" onClick={() => setClicked(true)}>
 								<div className="notification" id="notification">
-									Notification sur la position
+									Article
 									{" "}
 									{name}
 								</div>

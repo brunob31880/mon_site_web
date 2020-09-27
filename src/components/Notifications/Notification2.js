@@ -53,9 +53,7 @@ const Notification2 = props => {
 			: 		(
 				<>
 					<div className="notification2" id="notification2">
-						Notification sur la position
-						{" "}
-						{position.level}
+						Article
 					</div>
 				</>
 			)
