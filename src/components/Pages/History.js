@@ -1,9 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router";
 import {useApp} from "../../context/AppContext";
-import InfoHistory from "../History/InfoHistory";
-import ManageDate from "../History/ManageDate";
-
 /**
  * Stateless component for Bruno's book main homepage.
  *
