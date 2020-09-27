@@ -1,0 +1,21 @@
+{
+  "name": "ACDS",
+  "short_name": "ACDS",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#2A3443",
+  "description": "Assistant chef de salle",
+  "theme_color": "#2A3443",
+  "icons": [
+    {
+      "src": "./ACDS.png",
+      "sizes": "225x230",
+      "type": "image/png"
+    },
+    {
+      "src": "./ACDS-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}
