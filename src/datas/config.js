@@ -13,8 +13,7 @@ export const config = {
 	//SERVER_ADRESS: "https://boissiebruno-pageperso-pi.ovh:3030",
 	// Serveur dockeurisé maison
 	SERVER_ADRESS: "https://boissiebruno-pageperso-pi.ovh:3060",
-	
-	JSON_FILE: "world-countries.json",
+
 	loginHeader: {
 		backgroundColor: "rgb(25, 45, 179)",
 		height: "50px",
@@ -35,7 +34,7 @@ export const config = {
 		height: "50px",
 		iconSize: "40px",
 		leftComponent: {
-			icon: "control",
+			icon: "PEOPLE",
 			nav: "management"
 		},
 		centerComponent: {
@@ -131,13 +130,13 @@ export const config = {
 			text: "Personnes"
 		},
 		rightComponent: {
-			icon: "control2"
+			icon: "PEOPLE"
 		},
 		footerType: "Return",
 		returnHeight: "40px",
 		returnNav: "home"
 	},
-	loggedHeaderAgent: {
+	loggedHeaderAdmin: {
 		backgroundColor: "rgb(174, 98, 175)",
 		height: "50px",
 		iconSize: "40px",
@@ -145,31 +144,14 @@ export const config = {
 			text: ""
 		},
 		centerComponent: {
-			text: "Fiche Personne"
+			text: "Administration"
 		},
 		rightComponent: {
-			icon: "control2"
+			icon: "people"
 		},
 		footerType: "Return",
 		returnHeight: "40px",
-		returnNav: "management"
-	},
-	loggedHeaderEquipe: {
-		backgroundColor: "rgb(174, 98, 175)",
-		height: "50px",
-		iconSize: "40px",
-		leftComponent: {
-			text: ""
-		},
-		centerComponent: {
-			text: "Fiche Equipe"
-		},
-		rightComponent: {
-			icon: "control2"
-		},
-		footerType: "Return",
-		returnHeight: "40px",
-		returnNav: "management"
+		returnNav: "home"
 	},
 	loggedHeaderRegulations: {
 		backgroundColor: "rgb(40, 45, 104)",

@@ -3,7 +3,6 @@
 import React, { useMemo } from "react";
 import { Redirect } from "react-router";
 import { useApp } from "../../context/AppContext";
-import Notification from "../Notifications/Notification.js";
 import GlobalNotification from "../Notifications/GlobalNotification";
 /**
  * Stateless component for Bruno's book main homepage.

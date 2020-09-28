@@ -13,12 +13,6 @@ const AppReducer = (state, action) => {
 		case "setDate":
 			//console.log(`[Reducer] set date ${action.payload}`);
 			return { ...state, date: action.payload };
-		case "setHistoDate":
-			//console.log(`[Reducer] set date ${action.payload}`);
-			return { ...state, histodate: action.payload };
-		case "setInfoDate":
-			//console.log(`[Reducer] set date ${action.payload}`);
-			return { ...state, infodate: action.payload };
 		case "setGeometry":
 			console.log(`[Reducer] set Geometry ${action.payload.geometry}`);
 			return { ...state, geometry: action.payload.geometry };
@@ -31,16 +25,6 @@ const AppReducer = (state, action) => {
 		case "navTo":
 			console.log(`[Reducer] nav to ${action.payload.page}`);
 			return { ...state, page: action.payload.page };
-		case "changeSalle":
-			console.log(`[Reducer] Changing salle to ${action.payload.salle}`);
-			return { ...state, salle: action.payload.salle };
-		case "setRegul":
-			console.log(`[Reducer] set Reguls ${action.payload.reguls}`);
-			return { ...state, reguls: action.payload.reguls };
-		case "setAlert":
-			console.log(`[Reducer] set Alerts ${action.payload.alertes}`);
-			return { ...state, alertes: action.payload.alertes };
-
 		default:
 			return state;
 	}

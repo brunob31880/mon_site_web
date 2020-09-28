@@ -13,8 +13,7 @@
 
 import React from "react";
 import * as d3 from "d3";
-import CONTROL from "../../images/people.png";
-import CONTROL2 from "../../images/people.png";
+import PEOPLE from "../../images/people.png";
 import HISTO2 from "../../images/math.png";
 import MAP2 from "../../images/phys.png";
 import BACK from "../../images/BACK.png";
@@ -188,9 +187,7 @@ const Header = props => {
 						}
 						infotext();
 						
-					}
-					
-				
+					}				
 			}
 				function mouseup() {
 					right.style("opacity", 1);
@@ -215,7 +212,7 @@ const Header = props => {
 
 
 const navTo = page => {
-	console.log("[Header] clic on image");
+	console.log("[Header] Nav to "+ page);
 	dispatch({
 		type: "navTo",
 		payload: {
@@ -224,18 +221,6 @@ const navTo = page => {
 	});
 };
 const deconnect = () => {
-	dispatch({
-		type: "changeSalle",
-		payload: {
-			salle: {}
-		}
-	});
-	dispatch({
-		type: "setRegul",
-		payload: {
-			reguls: {}
-		}
-	});
 	dispatch({
 		type: "setSocket",
 		payload: {
@@ -260,10 +245,8 @@ return (
 		)}
 		<div style={outerdiv} id="outer">
 			<div className="leftdiv" id="left">
-				{/*	{ leftComponent.icon === "back" && <img src={leftIcon} width="20px" height="20px" />} */}
-				{/* leftComponent.icon === "back" && <Back fill="white" height="20px" width="20px" />} */}
 				{leftComponent.icon === "back" && <img src={BACK} style={{ cursor: "pointer" }} onClick={() => navTo(leftComponent.nav)} width={iconSize} height={iconSize} />}
-				{leftComponent.icon === "control" && <img src={CONTROL} style={{ cursor: "pointer" }} onClick={() => navTo(leftComponent.nav)} width={iconSize} height={iconSize} />}
+				{leftComponent.icon === "PEOPLE" && <img src={PEOPLE} style={{ cursor: "pointer" }} onClick={() => navTo(leftComponent.nav)} width={iconSize} height={iconSize} />}
 			</div>
 			<div className="centerdiv" id="center">
 				{centerComponent.text}
@@ -274,10 +257,12 @@ return (
 				)}
 			</div>
 			<div className="rightdiv" id="right">
-				{rightComponent.meta === "username" && user.email}
+				{rightComponent.meta === "username" && <div style={{ cursor: "pointer" }} onClick={() => navTo("admin")} > 
+					{user.email}
+					</div>}
 				{rightComponent.text}
 				{rightComponent.icon === "map2" && <img src={MAP2} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
-				{rightComponent.icon === "control2" && <img src={CONTROL2} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
+				{rightComponent.icon === "PEOPLE" && <img src={PEOPLE} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
 				{rightComponent.icon === "vr2" && <img src={VR2} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
 				{rightComponent.icon === "histo2" && <img src={HISTO2} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
 			</div>

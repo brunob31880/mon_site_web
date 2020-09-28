@@ -88,33 +88,33 @@ const Footer = props => {
 				: (
 					<div style={outerdiv}>
 						<div className="footerleftdiv">
-							<Tooltip title="Régulations">
+							<Tooltip title="Aviation Civile">
 								{leftFooterComponent.icon === "planes" && <img src={PLANES} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(leftFooterComponent.nav)} />}
 							</Tooltip>
 						</div>
 						<div className="footercenterleftdiv">
-							<Tooltip title="Historique">
+							<Tooltip title="Mathematiques	">
 								{centerFooterLeftComponent.icon === "history" && <img src={HISTO} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(centerFooterLeftComponent.nav)} />}
 							</Tooltip>
 						</div>
 						<div className="footercenterrightdiv">
-							<Tooltip title="Salle de contrôle">
+							<Tooltip title="Physique">
 								{centerFooterRightComponent.icon === "map" && <img src={MAP} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(centerFooterRightComponent.nav)} />}
 							</Tooltip>
 						</div>
 
 						<div className="footerrightdiv">
-							<Tooltip title="Realite virtuelle">
+							<Tooltip title="Informatique">
 								{rightFooterComponent.icon === "vr" && <img src={AR} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(rightFooterComponent.nav)} />}
 							</Tooltip>
 						</div>
 						<div className="footerfullrightdiv">
-							<Tooltip title="Alertes">
+							<Tooltip title="Maison">
 							{ fullrightFooterComponent.icon === "bell" && <img src={BELL} style={{ cursor: "pointer" }} width="35px" height="35px" onClick={() => navTo(fullrightFooterComponent.nav)} />}							
 							</Tooltip>
 						</div>
 						<div className="footerfullrightdiv2">
-						<Tooltip title="Radar">
+						<Tooltip title="Astronomie">
 						{full2rightFooterComponent.icon === "radar" && <img src={RADAR} style={{ cursor: "pointer" }} width="35px" height="35px"  onClick={() => navTo(full2rightFooterComponent.nav)} />}
 						</Tooltip>
 						</div>

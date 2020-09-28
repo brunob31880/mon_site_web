@@ -13,11 +13,11 @@ import Creation from "./components/Pages/Creation";
 import Salle from "./components/Pages/Salle";
 import First from "./components/Pages/First";
 import Home from "./components/Pages/Home";
+import Admin from "./components/Pages/Admin";
 import Histo from "./components/Pages/History";
 import Virtual from "./components/Pages/Virtual";
 import Regulations from "./components/Pages/Regulations";
 import Management from "./components/Pages/Management";
-import Notification2 from "./components/Notifications/Notification2";
 import PageNotFound from "./components/PageNotFound";
 import AuthRoute from "./routes/AuthRoutes";
 import Alertes from "./components/Pages/Alertes";
@@ -33,9 +33,10 @@ const mountNode = document.getElementById("root");
 const App = () => {
 
 
-	const { loggedHeaderRadar,loginHeader, loggedHeaderAlertes, loggedHeaderCwp, loggedHeaderEquipe, loggedHeaderIlot, loggedHeaderRegulation, loggedHeaderAgent, loggedHeaderNotification, loggedHeaderHistory, loggedHeaderVirtual, loggedHeader, loggedHeaderSalle, loggedHeaderManagement, loggedHeaderRegulations } = config;
+	const { loggedHeaderRadar,loginHeader, loggedHeaderAlertes, loggedHeaderAdmin,   loggedHeaderNotification, loggedHeaderHistory, loggedHeaderVirtual, loggedHeader, loggedHeaderSalle, loggedHeaderManagement, loggedHeaderRegulations } = config;
 	const FirstPage = () => withHeaderFooter(null)(First);
 	const PageLogin = () => withHeaderFooter(loginHeader)(Login);
+	const PageAdmin = () => withHeaderFooter(loggedHeaderAdmin)(Admin);
 	const PageCreation = () => withHeaderFooter(loginHeader)(Creation);
 	const PageHome = () => withHeaderFooter(loggedHeader)(Home);
 	const PageSalle = () => withHeaderFooter(loggedHeaderSalle)(Salle);
@@ -43,7 +44,6 @@ const App = () => {
 	const PageRegulations = () => withHeaderFooter(loggedHeaderRegulations)(Regulations);
 	const PageVR = () => withHeaderFooter(loggedHeaderVirtual)(Virtual);
 	const PageHistory = () => withHeaderFooter(loggedHeaderHistory)(Histo);
-	const PageNotification = () => withHeaderFooter(loggedHeaderNotification)(Notification2);
 	const PageAlertes = () => withHeaderFooter(loggedHeaderAlertes)(Alertes);
 	const PageRadar = () => withHeaderFooter(loggedHeaderRadar)(Radar);
 
@@ -68,9 +68,6 @@ const App = () => {
 		>
 			<BrowserRouter>
 				<Switch>	
-					<AuthRoute type="private" exact path="/notification/:id">
-						<PageNotification />
-					</AuthRoute>
 					<AuthRoute type="private" exact path="/history">
 						<PageHistory />
 					</AuthRoute>
@@ -91,6 +88,9 @@ const App = () => {
 					</AuthRoute>
 					<AuthRoute type="guest" exact path="/login">
 						<PageLogin />
+					</AuthRoute>
+					<AuthRoute type="private" exact path="/admin">
+						<PageAdmin />
 					</AuthRoute>
 					<AuthRoute type="guest" exact path="/creation">
 						<PageCreation />
