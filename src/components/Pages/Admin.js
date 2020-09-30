@@ -27,11 +27,29 @@ const Admin = () => {
 	const [filecontenu, setFileContenu] = useState();
 	const [{user, page}, dispatch] = useApp();
 
+	var myHeaders = new Headers();
+	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+	
+	var urlencoded = new URLSearchParams();
+	urlencoded.append("category", article);
+	urlencoded.append("contenu", contenu);
+	urlencoded.append("filecontenu", filecontenu);
+	
+	var requestOptions = {
+	  method: 'POST',
+	  headers: myHeaders,
+	  body: urlencoded,
+	  redirect: 'follow'
+	};
 
 	const navToPages = () => (page !== "admin");
 	const validateForm = () => article.length > 0 && contenu.length > 0;
 	const sendArticle =() => {
-
+		fetch(SERVER_ADRESS+"/auth", requestOptions)
+		.then(response => response.text())
+		.then(result => console.log("Creation article"+result))
+		.catch(error => console.log("error", error));
+	}
 	}
 	
 	return (
