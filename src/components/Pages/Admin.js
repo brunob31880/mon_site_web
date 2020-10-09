@@ -6,11 +6,9 @@ import React, { useState, useMemo } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import { Redirect } from "react-router";
 import socketIOClient from "socket.io-client";
-
+import {config} from "../../datas/config";
 import { useApp } from "../../context/AppContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { config } from "../../datas/config";
 /**
  * Stateless component for Login Page
  *
@@ -26,7 +24,7 @@ const Admin = () => {
 	const [contenu, setContenu] = useState();
 	const [filecontenu, setFileContenu] = useState();
 	const [{user, page}, dispatch] = useApp();
-
+	const {SERVER_ADRESS}=config;
 	var myHeaders = new Headers();
 	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 	
@@ -50,7 +48,7 @@ const Admin = () => {
 		.then(result => console.log("Creation article"+result))
 		.catch(error => console.log("error", error));
 	}
-	}
+	
 	
 	return (
 		navToPages()
@@ -85,7 +83,6 @@ const Admin = () => {
 				</div>
 			</>
 			)
-
 	);
 };
 
