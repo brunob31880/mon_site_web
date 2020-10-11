@@ -234,6 +234,12 @@ const deconnect = () => {
 			}
 		}
 	});
+	dispatch({
+		type: "setArticles",
+		payload: {
+			articles: []
+		}
+	});
 	navTo("/");
 };
 return (

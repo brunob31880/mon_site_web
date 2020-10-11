@@ -4,12 +4,12 @@ const AppReducer = (state, action) => {
 	//console.log("Receive action "+action.type);
 	switch (action.type) {
 		case "setDisplayType":
-			console.log("[Reducer] set displaytype to "+action.payload.displaytype);
-			return {...state, displaytype:action.payload.displaytype}
+			console.log("[Reducer] set displaytype to " + action.payload.displaytype);
+			return { ...state, displaytype: action.payload.displaytype }
 		case "setPosition":
-				return {...state, position:action.payload.position}
+			return { ...state, position: action.payload.position }
 		case "setOrientation":
-					return {...state, orientation:action.payload.orientation}
+			return { ...state, orientation: action.payload.orientation }
 		case "setDate":
 			//console.log(`[Reducer] set date ${action.payload}`);
 			return { ...state, date: action.payload };
@@ -25,6 +25,12 @@ const AppReducer = (state, action) => {
 		case "navTo":
 			console.log(`[Reducer] nav to ${action.payload.page}`);
 			return { ...state, page: action.payload.page };
+		case "addArticle":
+			console.log(`[Reducer] add Article `+JSON.stringify(action.payload.article));
+			return { ...state, articles:  [...state.articles, action.payload.article] };
+		case "setArticles":
+			console.log(`[Reducer] set Articles`+JSON.stringify(action.payload.articles));
+			return { ...state, articles:  action.payload.articles };
 		default:
 			return state;
 	}

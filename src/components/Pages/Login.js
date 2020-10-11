@@ -24,7 +24,7 @@ import {config} from "../../datas/config";
 const Login = () => {
 	const [email, setEmail] = useState("sonic@gmail.com");
 	const [password, setPassword] = useState("elpassword");
-	const [{user, page}, dispatch] = useApp();
+	const [{user, page, articles}, dispatch] = useApp();
 	const {SERVER_ADRESS}=config;
 	const myHeaders = new Headers();
 	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -44,13 +44,44 @@ const Login = () => {
 	const isOnError = (token) =>  (token.includes("error") || token.includes("Error"));
 	const isEmpty = obj => JSON.stringify(obj).includes("{}");
 	const hasConnecteduser = () => !(user.email === undefined);
+	
+	const manage =(result) => {	
+		console.log("[Login] manage result "+result);
+		result.forEach(element => {
+			const {category,contenu,filecontenu}=element;
+			dispatch({
+				type: "addArticle",
+				payload: {
+					article: {category,contenu,filecontenu}
+				}
+			});
+		});
+	};
 
+	const getArticles = () => {
+		console.log("[Login] getting Articles");
+		var myHeaders = new Headers();
+		const {token}=user;
+		console.log("Ask articles Using token "+token);
+		myHeaders.append("token", user.token);
+
+		var requestOptions = {
+			method: 'GET',
+			headers: myHeaders,
+			redirect: 'follow'
+		};
+
+		fetch(SERVER_ADRESS+"/articles", requestOptions)
+			.then(response => response.json())
+			.then(result => manage(result))
+			.catch(error => console.log('error', error));
+	}
 
 	const logWith = token => {
 		// Si deja connecté on sors
 		if (hasConnecteduser()) return;
 		
-		console.log("Token is "+ JSON.stringify(token));
+		console.log("Token is "+ token);
 		// si le token est vide on sort
 		if (isEmpty(token)) {
 			console.log(`token is empty : ${token} no connection`);
@@ -71,6 +102,8 @@ const Login = () => {
 		let messages=[];
 		messages.push("Informations utiles")
 		messages.push("autres informations")
+		const ntoke=JSON.stringify(token).split(':')[1].split("\"")[1].split("\\")[0];
+		console.log("Ici:"+ntoke);
 		dispatch({
 			type: "logUser",
 			payload: {
@@ -78,7 +111,7 @@ const Login = () => {
 					avatar: (email==="admin@gmail.com") || (email==="sonic@gmail.com") ? undefined: email+".png",
 					messages: messages,
 					email,
-					token: (token.includes("errors") ? undefined : token)
+					token: (token.includes("errors") ? undefined :ntoke)
 				}
 			}
 		});	
@@ -120,6 +153,7 @@ const Login = () => {
 	useMemo( () => {
 		if (hasConnecteduser()) {
 			console.log("User Connect");
+			if (articles.length === 0) getArticles();
 			setTimeout( dispatch({
 				type: "navTo",
 				payload: {
@@ -128,7 +162,7 @@ const Login = () => {
 			}), 500);
 			
 		}
-	}, [hasConnecteduser]);
+	}, [user]);
 
 	const navToPages = () => (page !== "login");
 	

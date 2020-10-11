@@ -12,7 +12,7 @@ export const config = {
 	// Serveur Raspberry PI maison (lancement par npm start et install mongodb)
 	//SERVER_ADRESS: "https://boissiebruno-pageperso-pi.ovh:3030",
 	// Serveur dockeurisé maison
-	SERVER_ADRESS: "https://boissiebruno-pageperso-pi.ovh:3060",
+	SERVER_ADRESS: "https://boissiebruno-pageperso-pi.ovh:3070",
 
 	loginHeader: {
 		backgroundColor: "rgb(25, 45, 179)",

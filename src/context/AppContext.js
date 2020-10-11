@@ -6,17 +6,14 @@ import AppReducer from "../reducers/AppReducer";
 */
 const initialState = {
 	user: {},
-	salle: {},
-	reguls: {},
 	socket: null,
 	geometry: {},
 	date :new Date(),
-	histodate:new Date(),
-	infodate:[],
 	displaytype: "",
 	position:{},
 	orientation:{},
 	menu:[],
+	articles:[],
 	page: "/"
 };
 

@@ -20,7 +20,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
  * @return	{Node}		Rendered Component node
  */
 const Admin = () => {
-	const [article, setArticle] = useState();
+	const [category, setCategory] = useState();
 	const [contenu, setContenu] = useState();
 	const [filecontenu, setFileContenu] = useState();
 	const [{user, page}, dispatch] = useApp();
@@ -29,7 +29,7 @@ const Admin = () => {
 	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 	
 	var urlencoded = new URLSearchParams();
-	urlencoded.append("category", article);
+	urlencoded.append("category", category);
 	urlencoded.append("contenu", contenu);
 	urlencoded.append("filecontenu", filecontenu);
 	
@@ -41,11 +41,25 @@ const Admin = () => {
 	};
 
 	const navToPages = () => (page !== "admin");
-	const validateForm = () => article.length > 0 && contenu.length > 0;
+	const validateForm = () => category.length > 0 && contenu.length > 0;
 	const sendArticle =() => {
-		fetch(SERVER_ADRESS+"/auth", requestOptions)
+		fetch(SERVER_ADRESS+"/articles", requestOptions)
 		.then(response => response.text())
-		.then(result => console.log("Creation article"+result))
+		.then(result => {
+			dispatch({
+				type: "addArticle",
+				payload: {
+					article: {category,contenu,filecontenu}
+				}
+			});
+			console.log("Creation category"+result);
+			setTimeout( dispatch({
+				type: "navTo",
+				payload: {
+					page: "home"
+				}
+			}), 500);
+		})
 		.catch(error => console.log("error", error));
 	}
 	
@@ -61,11 +75,11 @@ const Admin = () => {
 						<Form className="formLogin">
 							<Form.Group controlId="formBasicarticle">
 								<Form.Label>Sujet</Form.Label>
-								<Form.Control as="select" custom onChange={e => setArticle(e.target.value)}>
+								<Form.Control as="select" custom onChange={e => setCategory(e.target.value)}>
 									<option>Mathématique</option>
 									<option>Informatique</option>
 									<option>Physique</option>
-									<option>Article</option>
+									<option>Note</option>
 								</Form.Control>
 							</Form.Group>
 							<Form.Group controlId="formBasiccontenu">
