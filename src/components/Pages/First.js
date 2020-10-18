@@ -56,10 +56,7 @@ const First = props => {
 						<Button variant="primary" onClick={() => navTo("login")}>
 							Vous avez deja un compte? se connecter
 					</Button>
-						<p>&nbsp;</p>
-						<Button variant="primary" onClick={() => navTo("creation")}>
-							Créer un compte
-					</Button>
+					
 					</div>
 				</>
 			)

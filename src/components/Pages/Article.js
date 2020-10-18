@@ -20,7 +20,7 @@ const Article = props => {
     const getIcon = (category) => {
         console.log("Category=" + category);
         switch (category) {
-            case 'Mathematiques':
+            case 'Mathématiques':
                 return MATH;
                 break;
             case 'Informatique':

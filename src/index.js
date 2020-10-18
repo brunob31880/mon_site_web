@@ -9,7 +9,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import withHeaderFooter from "./components/Page";
 import Login from "./components/Pages/Login";
-import Creation from "./components/Pages/Creation";
 import Salle from "./components/Pages/Salle";
 import First from "./components/Pages/First";
 import Home from "./components/Pages/Home";
@@ -22,10 +21,13 @@ import PageNotFound from "./components/PageNotFound";
 import AuthRoute from "./routes/AuthRoutes";
 import Alertes from "./components/Pages/Alertes";
 import Radar from "./components/Pages/Radar";
-import { config } from "./datas/config";
+import { config} from "./datas/config";
 import { ErrorBoundary } from 'react-error-boundary'
 import ClockHOC from "./context/withClockHOC";
 import MobileHOC from "./context/withMobileHOC";
+import Back4AppHOC from  "./context/withBack4AppHoc";
+
+
 import "./index.css";
 
 const mountNode = document.getElementById("root");
@@ -37,7 +39,6 @@ const App = () => {
 	const FirstPage = () => withHeaderFooter(null)(First);
 	const PageLogin = () => withHeaderFooter(loginHeader)(Login);
 	const PageAdmin = () => withHeaderFooter(loggedHeaderAdmin)(Admin);
-	const PageCreation = () => withHeaderFooter(loginHeader)(Creation);
 	const PageHome = () => withHeaderFooter(loggedHeader)(Home);
 	const PageSalle = () => withHeaderFooter(loggedHeaderSalle)(Salle);
 	const PageManagement = () => withHeaderFooter(loggedHeaderManagement)(Management);
@@ -92,9 +93,6 @@ const App = () => {
 					<AuthRoute type="private" exact path="/admin">
 						<PageAdmin />
 					</AuthRoute>
-					<AuthRoute type="guest" exact path="/creation">
-						<PageCreation />
-					</AuthRoute>
 					<AuthRoute type="guest" exact path="/">
 						<FirstPage />
 					</AuthRoute>
@@ -129,6 +127,21 @@ async function registerSW() {
  * @return {void}
  */
 const main = () => {
+	
+	/*
+	const readRecord = () => {
+		const Travel = Parse.Object.extend('Travel');
+		const query = new Parse.Query(Travel);
+		query.find().then(
+		  (result) => {
+			
+			console.log("Travel="+JSON.stringify(result));	
+		  },
+		  (error) => {console.error(error)}
+		);
+	  };
+	  readRecord(); 
+	  */
 	window.addEventListener('load', e => {
 		registerSW(); 
 	  });
@@ -137,7 +150,9 @@ const main = () => {
 		<AppProvider>
 			<ClockHOC>
 				<MobileHOC>
+					<Back4AppHOC>
 					<App />
+					</Back4AppHOC>
 				</MobileHOC>
 			</ClockHOC>
 		</AppProvider>,

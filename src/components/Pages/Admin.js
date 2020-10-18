@@ -5,10 +5,10 @@
 import React, { useState, useMemo } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import { Redirect } from "react-router";
-import socketIOClient from "socket.io-client";
 import {config} from "../../datas/config";
 import { useApp } from "../../context/AppContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { createArticle} from "../../context/withBack4AppHoc";
 /**
  * Stateless component for Login Page
  *
@@ -24,43 +24,20 @@ const Admin = () => {
 	const [contenu, setContenu] = useState();
 	const [filecontenu, setFileContenu] = useState();
 	const [{user, page}, dispatch] = useApp();
-	const {SERVER_ADRESS}=config;
-	var myHeaders = new Headers();
-	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 	
-	var urlencoded = new URLSearchParams();
-	urlencoded.append("category", category);
-	urlencoded.append("contenu", contenu);
-	urlencoded.append("filecontenu", filecontenu);
-	
-	var requestOptions = {
-	  method: 'POST',
-	  headers: myHeaders,
-	  body: urlencoded,
-	  redirect: 'follow'
+	const navTo = page => {
+		dispatch({
+			type: "navTo",
+			payload: {
+				page
+			}
+		});
 	};
-
 	const navToPages = () => (page !== "admin");
 	const validateForm = () => category.length > 0 && contenu.length > 0;
 	const sendArticle =() => {
-		fetch(SERVER_ADRESS+"/articles", requestOptions)
-		.then(response => response.text())
-		.then(result => {
-			dispatch({
-				type: "addArticle",
-				payload: {
-					article: {category,contenu,filecontenu}
-				}
-			});
-			console.log("Creation category"+result);
-			setTimeout( dispatch({
-				type: "navTo",
-				payload: {
-					page: "home"
-				}
-			}), 500);
-		})
-		.catch(error => console.log("error", error));
+		createArticle(category,contenu,filecontenu);
+		navTo("home");
 	}
 	
 	

@@ -7,10 +7,10 @@ import { Button, Form, Container } from "react-bootstrap";
 import { Redirect } from "react-router";
 import socketIOClient from "socket.io-client";
 
-import {useApp} from "../../context/AppContext";
+import { useApp } from "../../context/AppContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import {config} from "../../datas/config";
+import { getConnection} from "../../context/withBack4AppHoc";
+import { config } from "../../datas/config";
 /**
  * Stateless component for Login Page
  *
@@ -24,152 +24,62 @@ import {config} from "../../datas/config";
 const Login = () => {
 	const [email, setEmail] = useState("sonic@gmail.com");
 	const [password, setPassword] = useState("elpassword");
-	const [{user, page, articles}, dispatch] = useApp();
-	const {SERVER_ADRESS}=config;
-	const myHeaders = new Headers();
-	myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-	const urlencoded = new URLSearchParams();
-	urlencoded.append("email", email);
-	urlencoded.append("password", password);
-
-	const requestOptions = {
-	//	mode: "no-cors",
-		method: "POST",
-		headers: myHeaders,
-		body: urlencoded,
-		redirect: "follow"
-	};
+	const [{ user, page, articles }, dispatch] = useApp();
 	
-	const isOnError = (token) =>  (token.includes("error") || token.includes("Error"));
+	const isOnError = (token) => (token.includes("error") || token.includes("Error"));
 	const isEmpty = obj => JSON.stringify(obj).includes("{}");
 	const hasConnecteduser = () => !(user.email === undefined);
+
 	
-	const manage =(result) => {	
-		console.log("[Login] manage result "+result);
-		result.forEach(element => {
-			const {category,contenu,filecontenu}=element;
+
+	
+
+
+	const adminConnection = () => email === "admin@gmail.com" && password === "admin";
+    const onLog=() =>{
+		let messages = [];
+			messages.push("Informations utiles")
+			messages.push("autres informations")
+			
 			dispatch({
-				type: "addArticle",
+				type: "logUser",
 				payload: {
-					article: {category,contenu,filecontenu}
+					user: {
+						avatar: (email === "admin@gmail.com") || (email === "sonic@gmail.com") ? undefined : email + ".png",
+						messages: messages,
+						email,
+						token :""
+					}
 				}
-			});
-		});
+			});		
 	};
-
-	const getArticles = () => {
-		console.log("[Login] getting Articles");
-		var myHeaders = new Headers();
-		const {token}=user;
-		console.log("Ask articles Using token "+token);
-		myHeaders.append("token", user.token);
-
-		var requestOptions = {
-			method: 'GET',
-			headers: myHeaders,
-			redirect: 'follow'
-		};
-
-		fetch(SERVER_ADRESS+"/articles", requestOptions)
-			.then(response => response.json())
-			.then(result => manage(result))
-			.catch(error => console.log('error', error));
-	}
-
-	const logWith = token => {
-		// Si deja connecté on sors
-		if (hasConnecteduser()) return;
-		
-		console.log("Token is "+ token);
-		// si le token est vide on sort
-		if (isEmpty(token)) {
-			console.log(`token is empty : ${token} no connection`);
-			return;
-		} // On sort aussi si c'est une erreur en retour
-		else if (isOnError(token) ) {
-			console.log("Error with server ");
-			window.alert(JSON.parse(token).errors);
-			return;
-		}
-	
-		dispatch({
-			type: "setSocket",
-			payload: {
-				socket: socketIOClient(SERVER_ADRESS)
-			}
-		});
-		let messages=[];
-		messages.push("Informations utiles")
-		messages.push("autres informations")
-		const ntoke=JSON.stringify(token).split(':')[1].split("\"")[1].split("\\")[0];
-		console.log("Ici:"+ntoke);
-		dispatch({
-			type: "logUser",
-			payload: {
-				user: {
-					avatar: (email==="admin@gmail.com") || (email==="sonic@gmail.com") ? undefined: email+".png",
-					messages: messages,
-					email,
-					token: (token.includes("errors") ? undefined :ntoke)
-				}
-			}
-		});	
-	};
-
-	const adminConnection=() => email==="admin@gmail.com" && password === "admin";
-
 	const sendCredential = () => {
-
-		if (adminConnection()) logWith("adminconnection")
-		else {
-			console.log("Contacting SERVER ADRESS="+SERVER_ADRESS);
-		fetch(SERVER_ADRESS+"/auth", requestOptions)
-			.then(response => response.text())
-			.then(result => logWith(result))
-			.catch(error => console.log("error", error));
-		}
+		const user = getConnection(email, password,onLog);	
 	};
 
-	const getUser = () => {
-		const myHeaders2 = new Headers();
-		myHeaders.append("token", "eyJ1c2VySWQiOiI1ZWU4YWNjOTY0NWU2NjBmNTE5OTJiN2MiLCJlbWFpbCI6ImJvaXNzaWVicnVub0BnbWFpbC5jb20iLCJwcm92aWRlciI6ImVtYWlsIiwibmFtZSI6ImJydW5vIGJvaXNzaWUifQ==");
 
-		const requestOptions2 = {
-			mode: "no-cors",
-			method: "GET",
-			headers: myHeaders2,
-			redirect: "follow"
-		};
-
-		fetch(SERVER_ADRESS+"/users/5ee8acc9645e660f51992b7c", requestOptions2)
-			.then(response => logWith(response.text()))
-			// .then(result => console.log(result))
-			.catch(error => console.log("error", error));
-	};
 	const validateForm = () => email.length > 0 && password.length > 0;
 
-	
-	useMemo( () => {
+
+	useMemo(() => {
 		if (hasConnecteduser()) {
 			console.log("User Connect");
-			if (articles.length === 0) getArticles();
-			setTimeout( dispatch({
+			setTimeout(dispatch({
 				type: "navTo",
 				payload: {
 					page: "home"
 				}
 			}), 500);
-			
+
 		}
 	}, [user]);
 
 	const navToPages = () => (page !== "login");
-	
-	useMemo( () => {
+
+	useMemo(() => {
 		console.log(`[Login] Nav To ${page}`);
 	}, [page]);
-	
+
 
 	return (
 		navToPages()
