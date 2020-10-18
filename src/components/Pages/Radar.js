@@ -35,8 +35,7 @@ const Radar = (props) => {
             ? <Redirect to={page} />
             : (
                 <>
-                    <div id="map" className="map" />
-                   
+                    <div id="map" className="map" />                  
                 </>
             )
 

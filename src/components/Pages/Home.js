@@ -20,12 +20,8 @@ const Home = () => {
 	const [{ page, user,articles }] = useApp();
 	
 	const isHome = () => (page === "home" || page === "/home");
-
-
 	const navToPages = () => (user.email !== undefined && !isHome());
 	
-
-
 	useMemo(() => {
 		console.log(`[Home] la page est home ? :${isHome()}`);
 		console.log(`[Home] NavToPage ? :${navToPages()} page=${page}`);
@@ -34,9 +30,8 @@ const Home = () => {
 	;
 	function notif() {
 		let notif = [];
-		for (let i = 0; i < articles.length; i++) {		
-				//console.log(articles[i]);			
-				if (articles[i].category!="undefined") notif.push({ id: i, category: articles[i].category, contenu: articles[i].contenu });			
+		for (let i = 0; i < articles.length; i++) {				
+				if (articles[i].category!="undefined") notif.push({ id: i, category: articles[i].category, contenu: articles[i].contenu,filecontenu: articles[i].filecontenu});			
 		}
 		return notif;
 	};
@@ -50,7 +45,7 @@ const Home = () => {
 						<GlobalNotification />
 						<div className="listearticle">
 						{notif().map(e => 
-							<Article key={e.id} category={e.category} contenu={e.contenu} />
+							<Article key={e.id} category={e.category} filecontenu={e.filecontenu} contenu={e.contenu} />
 						)}
 						</div>
 					</div>

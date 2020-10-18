@@ -65,7 +65,7 @@ const Back4AppHOC = ({ children }) => {
 
     useMemo(() => {
         if (hasConnecteduser()) fillArticles();
-    }, [user,page]);
+    }, [user]);
 
 
     return (
