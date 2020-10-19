@@ -11,9 +11,9 @@ import {useApp} from "../../context/AppContext";
  * @param {Object}	props		Incoming component properties
  * @return	{Node}		Rendered Component node
  */
-const History = () => {
+const Math = () => {
 	const [{page, user}] = useApp();
-	const navToPages = () => (user.email !== undefined && page !== "history");
+	const navToPages = () => (user.email !== undefined && page !== "math");
 
 	return (
 		navToPages()
@@ -28,4 +28,4 @@ const History = () => {
 	);
 };
 
-export default History;
+export default Math;

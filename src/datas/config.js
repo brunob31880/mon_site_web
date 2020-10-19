@@ -48,31 +48,31 @@ export const config = {
 			meta: "username"
 		},
 		rightFooterComponent: {
-			icon: "vr",
-			nav: "vr"
+			icon: "info",
+			nav: "info"
 		},
 		fullrightFooterComponent: {
-			icon: "bell",
-			nav: "alertes"
+			icon: "maison",
+			nav: "maison"
 		},
 		full2rightFooterComponent: {
-			icon: "radar",
-			nav: "radar"
+			icon: "astro",
+			nav: "astro"
 		},
 		centerFooterRightComponent: {
-			icon: "map",
-			nav: "salle"
+			icon: "phys",
+			nav: "phys"
 		},
 		centerFooterLeftComponent: {
-			icon: "history",
-			nav: "history"
+			icon: "math",
+			nav: "math"
 		},
 		leftFooterComponent: {
 			icon: "planes",
-			nav: "regulations"
+			nav: "aviation"
 		}
 	},
-	loggedHeaderSalle: {
+	loggedHeaderPhys: {
 		backgroundColor: "rgb(184, 97, 133)",
 		height: "50px",
 		iconSize: "40px",
@@ -86,43 +86,10 @@ export const config = {
 			text: "Physique"
 		},
 		rightComponent: {
-			icon: "map2"
+			icon: "phys"
 		}
 	},
-	loggedHeaderIlot: {
-		backgroundColor: "rgb(184, 97, 133)",
-		height: "50px",
-		iconSize: "40px",
-		footerType: "Return",
-		returnHeight: "40px",
-		returnNav: "/salle",
-		leftComponent: {
-			text: ""
-		},
-		centerComponent: {
-			text: "Ilot"
-		},
-		rightComponent: {
-			icon: "map2"
-		}
-	},
-	loggedHeaderCwp: {
-		backgroundColor: "rgb(184, 97, 133)",
-		height: "50px",
-		iconSize: "40px",
-		footerType: "Return",
-		returnHeight: "40px",
-		returnNav: "/ilot",
-		leftComponent: {
-			text: ""
-		},
-		centerComponent: {
-			text: "Cwp"
-		},
-		rightComponent: {
-			icon: "map2"
-		}
-	},
+	
 	loggedHeaderManagement: {
 		backgroundColor: "rgb(174, 98, 175)",
 		height: "50px",
@@ -157,7 +124,7 @@ export const config = {
 		returnHeight: "40px",
 		returnNav: "home"
 	},
-	loggedHeaderRegulations: {
+	loggedHeaderAviation: {
 		backgroundColor: "rgb(40, 45, 104)",
 		height: "50px",
 		iconSize: "40px",
@@ -168,30 +135,13 @@ export const config = {
 			text: "Aviation Civile"
 		},
 		rightComponent: {
-			text: ""
+			icon: "planes"
 		},
 		footerType: "Return",
 		returnHeight: "40px",
 		returnNav: "home"
 	},
-	loggedHeaderRegulation: {
-		backgroundColor: "rgb(40, 45, 104)",
-		height: "50px",
-		iconSize: "40px",
-		leftComponent: {
-			text: ""
-		},
-		centerComponent: {
-			text: "Regulations"
-		},
-		rightComponent: {
-			text: ""
-		},
-		footerType: "Return",
-		returnHeight: "40px",
-		returnNav: "/regulations"
-	},
-	loggedHeaderVirtual: {
+	loggedHeaderInfo: {
 		backgroundColor: "rgb(105, 65, 199)",
 		height: "50px",
 		iconSize: "40px",
@@ -205,10 +155,10 @@ export const config = {
 			text: "Informatique"
 		},
 		rightComponent: {
-			icon: "vr2"
+			icon: "info"
 		}
 	},
-	loggedHeaderHistory: {
+	loggedHeaderMath: {
 		backgroundColor: "rgb(156, 37, 103)",
 		height: "50px",
 		iconSize: "40px",
@@ -222,27 +172,10 @@ export const config = {
 			text: "Mathematiques"
 		},
 		rightComponent: {
-			icon: "histo2"
+			icon: "math"
 		}
 	},
-	loggedHeaderNotification: {
-		backgroundColor: "rgb(55, 124, 159)",
-		height: "50px",
-		iconSize: "40px",
-		footerType: "Return",
-		returnHeight: "40px",
-		returnNav: "/home",
-		leftComponent: {
-			text: ""
-		},
-		centerComponent: {
-			text: "Notification"
-		},
-		rightComponent: {
-			text: ""
-		}
-	},
-	loggedHeaderAlertes: {
+	loggedHeaderMaison: {
 		backgroundColor: "rgb(40, 45, 104)",
 		height: "50px",
 		iconSize: "40px",
@@ -253,13 +186,13 @@ export const config = {
 			text: "Maison"
 		},
 		rightComponent: {
-			icon: "bell"
+			icon: "maison"
 		},
 		footerType: "Return",
 		returnHeight: "40px",
 		returnNav: "home"
 	},
-	loggedHeaderRadar: {
+	loggedHeaderAstro: {
 		backgroundColor: "rgb(51, 209, 255)",
 		height: "50px",
 		iconSize: "40px",
@@ -270,7 +203,7 @@ export const config = {
 			text: "Astronomie"
 		},
 		rightComponent: {
-			icon: "radar"
+			icon: "astro"
 		},
 		footerType: "Return",
 		returnHeight: "40px",

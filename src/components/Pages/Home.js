@@ -31,7 +31,7 @@ const Home = () => {
 	function notif() {
 		let notif = [];
 		for (let i = 0; i < articles.length; i++) {				
-				if (articles[i].category!="undefined") notif.push({ id: i, category: articles[i].category, contenu: articles[i].contenu,filecontenu: articles[i].filecontenu});			
+				if (articles[i].category!="undefined") notif.push({ id: i,objectId:articles[i].objectId, category: articles[i].category, contenu: articles[i].contenu,filecontenu: articles[i].filecontenu});			
 		}
 		return notif;
 	};
@@ -45,7 +45,7 @@ const Home = () => {
 						<GlobalNotification />
 						<div className="listearticle">
 						{notif().map(e => 
-							<Article key={e.id} category={e.category} filecontenu={e.filecontenu} contenu={e.contenu} />
+							<Article key={e.id} id={e.objectId} category={e.category} filecontenu={e.filecontenu} contenu={e.contenu} />
 						)}
 						</div>
 					</div>

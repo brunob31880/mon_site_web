@@ -2,33 +2,32 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { Redirect } from "react-router";
-import {useApp} from "../../context/AppContext";
+import { useApp } from "../../context/AppContext";
 
 
 /**
  * Stateless component for Acds .
  *
- * @name Management
+ * @name Aviation
  * @author Bruno Boissie  <bruno.boissie@aviation-civile.gouv.fr>
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}	props		Incoming component properties
  * @return	{Node}		Rendered Component node
  */
-const Management = () => {
-	const [{page, user, reguls}] = useApp();
-	// Les redirections vers la page regulations sont de la forme "regulations" ou "/regulations"
-	const isRegulationPage = () => (page === "regulations" || page === "/regulations");
-	const navToPages = () => (user.email !== undefined && !isRegulationPage() );
-	console.log(`[Regulations] navToPages=${navToPages()}`);
+const Aviation = () => {
+	const [{ page, user }] = useApp();
+	const isAviationPage = () => (page === "aviation" || page === "/aviation");
+	const navToPages = () => (user.email !== undefined && !isAviationPage());
+	console.log(`[Aviation] navToPages=${navToPages()}`);
 
 	return (
 		navToPages()
-			?			<Redirect to={page} />
-			:		(
+			? <Redirect to={page} />
+			: (
 				<>
 					<div className="listereguls">
-						
+
 					</div>
 				</>
 			)
@@ -36,4 +35,4 @@ const Management = () => {
 	);
 };
 
-export default Management;
+export default Aviation;

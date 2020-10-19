@@ -36,25 +36,9 @@ const Login = () => {
 
 
 	const adminConnection = () => email === "admin@gmail.com" && password === "admin";
-    const onLog=() =>{
-		let messages = [];
-			messages.push("Informations utiles")
-			messages.push("autres informations")
-			
-			dispatch({
-				type: "logUser",
-				payload: {
-					user: {
-						avatar: (email === "admin@gmail.com") || (email === "sonic@gmail.com") ? undefined : email + ".png",
-						messages: messages,
-						email,
-						token :""
-					}
-				}
-			});		
-	};
+    
 	const sendCredential = () => {
-		const user = getConnection(email, password,onLog);	
+		const user = getConnection(email, password,dispatch);	
 	};
 
 

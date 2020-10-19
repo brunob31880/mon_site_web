@@ -9,18 +9,18 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import withHeaderFooter from "./components/Page";
 import Login from "./components/Pages/Login";
-import Salle from "./components/Pages/Salle";
+import Phys from "./components/Pages/Phys";
 import First from "./components/Pages/First";
 import Home from "./components/Pages/Home";
 import Admin from "./components/Pages/Admin";
-import Histo from "./components/Pages/History";
-import Virtual from "./components/Pages/Virtual";
-import Regulations from "./components/Pages/Regulations";
+import Math from "./components/Pages/Math";
+import Info from "./components/Pages/info";
+import Aviation from "./components/Pages/Aviation";
 import Management from "./components/Pages/Management";
 import PageNotFound from "./components/PageNotFound";
 import AuthRoute from "./routes/AuthRoutes";
-import Alertes from "./components/Pages/Alertes";
-import Radar from "./components/Pages/Radar";
+import Maison from "./components/Pages/Maison";
+import Astro from "./components/Pages/Astro";
 import { config} from "./datas/config";
 import { ErrorBoundary } from 'react-error-boundary'
 import ClockHOC from "./context/withClockHOC";
@@ -35,18 +35,18 @@ const mountNode = document.getElementById("root");
 const App = () => {
 
 
-	const { loggedHeaderRadar,loginHeader, loggedHeaderAlertes, loggedHeaderAdmin,   loggedHeaderNotification, loggedHeaderHistory, loggedHeaderVirtual, loggedHeader, loggedHeaderSalle, loggedHeaderManagement, loggedHeaderRegulations } = config;
+	const { loggedHeaderAstro,loginHeader, loggedHeaderMaison, loggedHeaderAdmin,   loggedHeaderMath, loggedHeaderInfo, loggedHeader, loggedHeaderPhys, loggedHeaderManagement, loggedHeaderAviation } = config;
 	const FirstPage = () => withHeaderFooter(null)(First);
 	const PageLogin = () => withHeaderFooter(loginHeader)(Login);
 	const PageAdmin = () => withHeaderFooter(loggedHeaderAdmin)(Admin);
 	const PageHome = () => withHeaderFooter(loggedHeader)(Home);
-	const PageSalle = () => withHeaderFooter(loggedHeaderSalle)(Salle);
+	const PagePhys = () => withHeaderFooter(loggedHeaderPhys)(Phys);
 	const PageManagement = () => withHeaderFooter(loggedHeaderManagement)(Management);
-	const PageRegulations = () => withHeaderFooter(loggedHeaderRegulations)(Regulations);
-	const PageVR = () => withHeaderFooter(loggedHeaderVirtual)(Virtual);
-	const PageHistory = () => withHeaderFooter(loggedHeaderHistory)(Histo);
-	const PageAlertes = () => withHeaderFooter(loggedHeaderAlertes)(Alertes);
-	const PageRadar = () => withHeaderFooter(loggedHeaderRadar)(Radar);
+	const PageAviation = () => withHeaderFooter(loggedHeaderAviation)(Aviation);
+	const PageInfo = () => withHeaderFooter(loggedHeaderInfo)(Info);
+	const PageMath = () => withHeaderFooter(loggedHeaderMath)(Math);
+	const PageMaison = () => withHeaderFooter(loggedHeaderMaison)(Maison);
+	const PageAstro = () => withHeaderFooter(loggedHeaderAstro)(Astro);
 
 	function ErrorFallback({ error, componentStack, resetErrorBoundary }) {
 		return (
@@ -69,20 +69,20 @@ const App = () => {
 		>
 			<BrowserRouter>
 				<Switch>	
-					<AuthRoute type="private" exact path="/history">
-						<PageHistory />
+					<AuthRoute type="private" exact path="/math">
+						<PageMath/>
 					</AuthRoute>
-					<AuthRoute type="private" exact path="/vr">
-						<PageVR />
+					<AuthRoute type="private" exact path="/info">
+						<PageInfo />
 					</AuthRoute>
-					<AuthRoute type="private" exact path="/salle">
-						<PageSalle />
+					<AuthRoute type="private" exact path="/phys">
+						<PagePhys />
 					</AuthRoute>
 					<AuthRoute type="private" exact path="/management">
 						<PageManagement />
 					</AuthRoute>
-					<AuthRoute type="private" exact path="/regulations">
-						<PageRegulations />
+					<AuthRoute type="private" exact path="/aviation">
+						<PageAviation />
 					</AuthRoute>
 					<AuthRoute type="private" exact path="/home">
 						<PageHome />
@@ -96,11 +96,11 @@ const App = () => {
 					<AuthRoute type="guest" exact path="/">
 						<FirstPage />
 					</AuthRoute>
-					<AuthRoute type="private" exact path="/alertes">
-						<PageAlertes />
+					<AuthRoute type="private" exact path="/maison">
+						<PageMaison />
 					</AuthRoute>
-					<AuthRoute type="private" exact path="/radar">
-						<PageRadar />
+					<AuthRoute type="private" exact path="/astro">
+						<PageAstro />
 					</AuthRoute>
 					<Route component={PageNotFound} />
 				</Switch>
@@ -128,20 +128,6 @@ async function registerSW() {
  */
 const main = () => {
 	
-	/*
-	const readRecord = () => {
-		const Travel = Parse.Object.extend('Travel');
-		const query = new Parse.Query(Travel);
-		query.find().then(
-		  (result) => {
-			
-			console.log("Travel="+JSON.stringify(result));	
-		  },
-		  (error) => {console.error(error)}
-		);
-	  };
-	  readRecord(); 
-	  */
 	window.addEventListener('load', e => {
 		registerSW(); 
 	  });

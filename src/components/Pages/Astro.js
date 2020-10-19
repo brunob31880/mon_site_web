@@ -12,18 +12,18 @@ let map = null;
 /**
  * Stateless component Radar for Acds.
  *
- * @name Radar
+ * @name Astro
  * @author Bruno Boissie <bruno.boissie@aviation-civile.gouv.fr>
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}	props		Incoming component properties
  * @return	{Node}		Rendered Component node
  */
-const Radar = (props) => {
-    const [{ page, geometry, position, displaytype, user, socket }] = useApp();
-    const isRadar = () => page.includes("radar");
+const Astro = (props) => {
+    const [{ page, user }] = useApp();
+    const isAstro= () => page.includes("astro");
     const [locate, setLocate] = useState("");
-    const navToPages = () => (user.email !== undefined && !isRadar());
+    const navToPages = () => (user.email !== undefined && !isAstro());
 
 
     const menu = [];
@@ -42,4 +42,4 @@ const Radar = (props) => {
     );
 };
 
-export default Radar;
+export default Astro;

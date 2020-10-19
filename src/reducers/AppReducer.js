@@ -26,11 +26,15 @@ const AppReducer = (state, action) => {
 			console.log(`[Reducer] nav to ${action.payload.page}`);
 			return { ...state, page: action.payload.page };
 		case "addArticle":
-			console.log(`[Reducer] add Article `+JSON.stringify(action.payload.article));
-			return { ...state, articles:  [...state.articles, action.payload.article] };
+			console.log(`[Reducer] add Article ` + JSON.stringify(action.payload.article));
+			return { ...state, articles: [...state.articles, action.payload.article] };
+		case "delArticle":
+			console.log(`[Reducer] delete Article ` + JSON.stringify(action.payload.objectId));
+			return { ...state, articles: state.articles.filter(art => art.objectId !== action.payload.objectId)};
+				
 		case "setArticles":
-			console.log(`[Reducer] set Articles`+JSON.stringify(action.payload.articles));
-			return { ...state, articles:  action.payload.articles };
+			console.log(`[Reducer] set Articles` + JSON.stringify(action.payload.articles));
+			return { ...state, articles: action.payload.articles };
 		default:
 			return state;
 	}

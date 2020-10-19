@@ -12,14 +12,14 @@ import React, { useEffect, useMemo } from "react";
 /* import Svg from "../images/back.svg"; */
 /* import Image from 'react-bootstrap/Image' */
 import Tooltip from '@material-ui/core/Tooltip';
-import AR from "../images/info.png";
-import MAP from "../images/phys.png";
-import HISTO from "../images/math.png";
+import INFO from "../images/info.png";
+import PHYS from "../images/phys.png";
+import MATH from "../images/math.png";
 import PLANES from "../images/plane.png";
-import RADAR from "../images/astro.png";
+import ASTRO from "../images/astro.png";
 import { useApp } from "../context/AppContext";
 //https://material-ui.com/fr/components/tooltips/
-import BELL from "../images/camera.png";
+import MAISON from "../images/camera.png";
 
 /**
  * Stateless component for Acds Footer.
@@ -94,28 +94,28 @@ const Footer = props => {
 						</div>
 						<div className="footercenterleftdiv">
 							<Tooltip title="Mathematiques	">
-								{centerFooterLeftComponent.icon === "history" && <img src={HISTO} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(centerFooterLeftComponent.nav)} />}
+								{centerFooterLeftComponent.icon === "math" && <img src={MATH} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(centerFooterLeftComponent.nav)} />}
 							</Tooltip>
 						</div>
 						<div className="footercenterrightdiv">
 							<Tooltip title="Physique">
-								{centerFooterRightComponent.icon === "map" && <img src={MAP} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(centerFooterRightComponent.nav)} />}
+								{centerFooterRightComponent.icon === "phys" && <img src={PHYS} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(centerFooterRightComponent.nav)} />}
 							</Tooltip>
 						</div>
 
 						<div className="footerrightdiv">
 							<Tooltip title="Informatique">
-								{rightFooterComponent.icon === "vr" && <img src={AR} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(rightFooterComponent.nav)} />}
+								{rightFooterComponent.icon === "info" && <img src={INFO} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} onClick={() => navTo(rightFooterComponent.nav)} />}
 							</Tooltip>
 						</div>
 						<div className="footerfullrightdiv">
 							<Tooltip title="Maison">
-							{ fullrightFooterComponent.icon === "bell" && <img src={BELL} style={{ cursor: "pointer" }} width="35px" height="35px" onClick={() => navTo(fullrightFooterComponent.nav)} />}							
+							{ fullrightFooterComponent.icon === "maison" && <img src={MAISON} style={{ cursor: "pointer" }} width="35px" height="35px" onClick={() => navTo(fullrightFooterComponent.nav)} />}							
 							</Tooltip>
 						</div>
 						<div className="footerfullrightdiv2">
 						<Tooltip title="Astronomie">
-						{full2rightFooterComponent.icon === "radar" && <img src={RADAR} style={{ cursor: "pointer" }} width="35px" height="35px"  onClick={() => navTo(full2rightFooterComponent.nav)} />}
+						{full2rightFooterComponent.icon === "astro" && <img src={ASTRO} style={{ cursor: "pointer" }} width="35px" height="35px"  onClick={() => navTo(full2rightFooterComponent.nav)} />}
 						</Tooltip>
 						</div>
 					</div>

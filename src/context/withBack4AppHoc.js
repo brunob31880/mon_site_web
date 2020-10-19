@@ -11,6 +11,8 @@ import React, { useEffect, useMemo } from "react";
 import { useApp } from "./AppContext";
 import Parse from 'parse'; //Import parse
 import { config } from "../datas/config";
+
+//https://www.back4app.com/docs/platform/parse-server-live-query-example
 /**
  * Stateless component for back4App.
  *
@@ -23,7 +25,7 @@ import { config } from "../datas/config";
  */
 const Back4AppHOC = ({ children }) => {
 
-    const [{ user,page,article }, dispatch] = useApp();
+    const [{ user, page, article }, dispatch] = useApp();
 
     const hasConnecteduser = () => !(user.email === undefined);
     useEffect(() => {
@@ -34,6 +36,7 @@ const Back4AppHOC = ({ children }) => {
             config.BACK4APP.Application_ID, // Application ID
             config.BACK4APP.JavaScript_key // Javascript key
         );
+
     }, []);
 
     const fillArticles = () => {
@@ -49,12 +52,12 @@ const Back4AppHOC = ({ children }) => {
             (result) => {
                 console.log("[Back4AppHOC] Articles=" + JSON.stringify(result));
                 result.forEach(element => {
-                    // console.log("Article="+JSON.parse(JSON.stringify(element)));
-                    const { category, contenu, filecontenu } = JSON.parse(JSON.stringify(element));
+                     console.log("Article="+JSON.parse(JSON.stringify(element)));
+                    const { objectId,category, contenu, filecontenu } = JSON.parse(JSON.stringify(element));
                     dispatch({
                         type: "addArticle",
                         payload: {
-                            article: { category, contenu, filecontenu }
+                            article: { objectId,category, contenu, filecontenu }
                         }
                     });
                 });
@@ -64,7 +67,39 @@ const Back4AppHOC = ({ children }) => {
     }
 
     useMemo(() => {
-        if (hasConnecteduser()) fillArticles();
+        if (hasConnecteduser()) {
+            console.log("[Back4appHOC] user connected");
+            var client = new Parse.LiveQueryClient({
+                applicationId: config.BACK4APP.Application_ID,
+                serverURL: 'wss://' + 'monsiteweb.b4a.io', // Example: 'wss://livequerytutorial.back4app.io'
+                javascriptKey: config.BACK4APP.JavaScript_key
+            });
+            client.open();
+            var query = new Parse.Query('Article');
+            query.ascending('createdAt').limit(5);
+            var subscription = client.subscribe(query);
+            subscription.on('create', article => {
+                console.log("On create event article");
+                const { objectId,category, contenu, filecontenu } = JSON.parse(JSON.stringify(article));
+                dispatch({
+                    type: "addArticle",
+                    payload: {
+                        article: { objectId,category, contenu, filecontenu }
+                    }
+                });
+            });
+            subscription.on('delete', article => {
+                console.log("On delete event article");
+                const { objectId } = JSON.parse(JSON.stringify(article));
+                dispatch({
+                    type: "delArticle",
+                    payload: {
+                        objectId
+                    }
+                });
+            });
+            fillArticles();
+        }
     }, [user]);
 
 
@@ -85,17 +120,45 @@ export const getUser = () => {
     );
     return query;
 };
-export const getConnection = (email, password, onLog) => {
+export const getConnection = (email, password,dispatch) => {
+   
     Parse.User.logIn(email, password).then((user) => {
-        console.log("Logging");
-        onLog();
+        console.log("Logging "+JSON.stringify(user));
+        const { objectId,avatar } = JSON.parse(JSON.stringify(user));
+        let messages = [];
+			messages.push("Informations utiles")
+			messages.push("autres informations")
+			
+			dispatch({
+				type: "logUser",
+				payload: {
+					user: {
+						avatar,
+						messages: messages,
+						email,
+						token :""
+					}
+				}
+			});		
     }).catch(error => {
         console.log("Error=" + error);
     })
 
 };
-
-export const createArticle=(c1, c2, c3) => {
+export const deleteArticle = (id) => {
+    console.log("[Back4AppHOC] Deleting=" + id);
+    const Article = Parse.Object.extend('Article');
+    const query = new Parse.Query(Article);
+    // here you put the objectId that you want to delete
+    query.get(id).then((object) => {
+      object.destroy().then((response) => {      
+        console.log('Deleted Article', response);
+      }, (error) => {
+        console.error('Error while deleting Article', error);
+      });
+    });
+}
+export const createArticle = (c1, c2, c3) => {
     const Article = Parse.Object.extend('Article');
     const myNewObject = new Article();
 
@@ -104,12 +167,12 @@ export const createArticle=(c1, c2, c3) => {
     myNewObject.set('filecontenu', c3);
 
     myNewObject.save().then(
-        (result) => {         
+        (result) => {
             console.log('Article created', result);
-            
+
         },
         (error) => {
-          
+
             console.error('Error while creating Article: ', error);
         }
     );

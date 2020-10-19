@@ -8,8 +8,8 @@ import {useApp} from "../../context/AppContext";
  * Stateless component for Acds .
  * Page Alerte
  *
- * @name Alertes
- * @author Geraldine Beboux  <geraldine.beboux@aviation-civile.gouv.fr>
+ * @name Maison
+ * @author 
  * @copyright (c) 2020, DSNA/DTI. All rights reserved.
  *
  * @param {Object}	props		Incoming component properties
@@ -17,13 +17,13 @@ import {useApp} from "../../context/AppContext";
  */
 
 
-const Alertes = () => {
+const Maison = () => {
 	
-	const [{page, user, alertes}] = useApp();
+	const [{page, user}] = useApp();
 	// Les redirections vers la page regulations sont de la forme "regulations" ou "/regulations"
-	const isAlertesPage = () => (page === "alertes" || page === "/alertes");
-	const navToPages = () => (user.email !== undefined && !isAlertesPage() );
-	console.log(`[Alertes] navToPages=${navToPages()}`);
+	const isAlertesMaison = () => (page === "maison" || page === "/maison");
+	const navToPages = () => (user.email !== undefined && !isAlertesMaison() );
+	console.log(`[Maison] navToPages=${navToPages()}`);
 
 
 	return (
@@ -43,4 +43,4 @@ const Alertes = () => {
 	);
 };
 
-export default Alertes;
+export default Maison;

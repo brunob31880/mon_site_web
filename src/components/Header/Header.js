@@ -14,15 +14,17 @@
 import React from "react";
 import * as d3 from "d3";
 import PEOPLE from "../../images/people.png";
-import HISTO2 from "../../images/math.png";
-import MAP2 from "../../images/phys.png";
+import MATH from "../../images/math.png";
+import PHYS from "../../images/phys.png";
 import BACK from "../../images/BACK.png";
-import VR2 from "../../images/info.png";
+import INFO from "../../images/info.png";
 import photo1 from "../../images/Sonic.png";
 import photo2 from "../../images/Sonic2.jpg";
 import { useApp } from "../../context/AppContext";
 import {config} from "../../datas/config";
-
+import PLANES from "../../images/plane.png";
+import ASTRO from "../../images/astro.png";
+import MAISON from "../../images/camera.png";
 /**
  * Stateless component for ACDS header.
  *
@@ -115,7 +117,7 @@ const Header = props => {
 			.attr("y", 0)
 			.attr("height", svgH / 2)
 			.attr("width", svgW / 2)
-			.attr("xlink:href", user.avatar ? SERVER_ADRESS+"/avatars/"+user.email+".png" : (user.email==="admin@gmail.com" ? photo2:photo1));
+			.attr("xlink:href", user.avatar ? user.avatar.url : photo2);
 		const fill = groupePicture.append("ellipse")
 			.attr("rx", 50)
 			.attr("ry", 45)
@@ -267,10 +269,13 @@ return (
 					{user.email}
 					</div>}
 				{rightComponent.text}
-				{rightComponent.icon === "map2" && <img src={MAP2} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
+				{rightComponent.icon === "phys" && <img src={PHYS} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
 				{rightComponent.icon === "PEOPLE" && <img src={PEOPLE} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
-				{rightComponent.icon === "vr2" && <img src={VR2} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
-				{rightComponent.icon === "histo2" && <img src={HISTO2} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
+				{rightComponent.icon === "info" && <img src={INFO} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
+				{rightComponent.icon === "math" && <img src={MATH} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
+				{rightComponent.icon === "planes" && <img src={PLANES} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
+				{rightComponent.icon === "maison" && <img src={MAISON} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
+				{rightComponent.icon === "astro" && <img src={ASTRO} style={{ cursor: "pointer" }} width={iconSize} height={iconSize} />}
 			</div>
 		</div>
 		<div id="picture" />
