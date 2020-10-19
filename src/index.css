@@ -263,8 +263,8 @@
 }
 .iconecategory {
 	background-color: white;
-	border-radius: 17px;
-	padding:15px;
+	border-radius: 5px;
+	padding:10px;
 	border: 2px solid white;
 	align-self:start;
 	display: flex;

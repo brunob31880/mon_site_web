@@ -5,7 +5,7 @@
 		meta: valeur connu au niveau du contexte global 
 */
 export const config = {
-	version:"0.0.1",
+	version:"0.0.2",
 	 //SERVER_ADRESS : "http://127.0.0.1:3030",
 	// pour ceux qui n'ont pas de serveur installé ou fonctionnel 
 	// Essai second commit sur seconde machine BRANCHE_GEGE

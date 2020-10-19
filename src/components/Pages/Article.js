@@ -41,7 +41,7 @@ B_{ ij } \\
 \\sqrt[n]{ arg }
 `;
 const getIcon = (category) => {
-    console.log("Category=" + category);
+    //console.log("Category=" + category);
     switch (category) {
         case 'Mathématiques':
             return MATH;
