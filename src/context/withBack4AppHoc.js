@@ -133,7 +133,8 @@ export const getConnection = (email, password,dispatch) => {
 				type: "logUser",
 				payload: {
 					user: {
-						avatar,
+                        avatar,
+                        objectId,
 						messages: messages,
 						email,
 						token :""
@@ -143,8 +144,26 @@ export const getConnection = (email, password,dispatch) => {
     }).catch(error => {
         console.log("Error=" + error);
     })
-
 };
+
+export const testUpdateuser =(id,b64) => {
+    const User = new Parse.User();
+    const query = new Parse.Query(User);  
+    console.log("base64="+JSON.stringify(b64));
+    const { base64 } = JSON.parse(JSON.stringify(b64[0]));
+    console.log("base64="+JSON.stringify(base64));
+    // Finds the user by its ID
+    query.get(id).then((user) => {
+      // Updates the data we want
+      user.set('avatar', new Parse.File("avatar", { base64 }, "image/png"));
+      // Saves the user with the updated data
+      user.save().then((response) => {
+        console.log('Updated user', response);
+      }).catch((error) => {
+        console.error('Error while updating user', error);
+      });
+    });
+}
 export const deleteArticle = (id) => {
     console.log("[Back4AppHOC] Deleting=" + id);
     const Article = Parse.Object.extend('Article');
